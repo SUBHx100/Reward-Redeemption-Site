@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Fire Redeem</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/3/37/Mobile-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+    }
+
+    .logo {
+      height: 30px;
+    }
+
+    .store-btn {
+      background: white;
+      color: black;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .container {
+      text-align: center;
+      margin-top: 120px;
+    }
+
+    .redeem-input {
+      width: 80%;
+      max-width: 320px;
+      padding: 8px;
+      font-size: 17px;
+      border: 2px solid orange;
+      border-radius: 5px;
+      text-transform: uppercase;
+      outline: none;
+      margin-bottom: 10px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      max-width: 320px;
+      margin: 0 auto;
+      padding: 0 5px;
+    }
+
+    .button-group button {
+      width: 130px;
+      padding: 6px;
+      font-size: 13px;
+      border: none;
+      border-radius: 4px;
+      background: grey;
+      color: white;
+      cursor: not-allowed;
+    }
+
+    #confirmBtn.active {
+      background: orange;
+      cursor: pointer;
+    }
+
+    .important-box {
+      background: white;
+      color: black;
+      padding: 16px;
+      margin: 50px auto 0;
+      max-width: 90%;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .important-box p {
+      margin-bottom: 10px;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .footer img {
+      height: 18px;
+      margin-right: 5px;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #222;
+      color: white;
+      padding: 20px;
+      border: 4px solid orange;
+      border-radius: 8px;
+      display: none;
+      z-index: 1000;
+      text-align: center;
+      width: 85%;
+      max-width: 360px;
+    }
+
+    .popup h2 {
+      color: orange;
+      margin-bottom: 5px;
+    }
+
+    .popup p {
+      font-size: 14px;
+      margin: 5px 0;
+    }
+
+    .popup button {
+      background: orange;
+      color: black;
+      margin-top: 10px;
+      padding: 8px 20px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://dl.dir.freefiremobile.com/common/web_event/tweb-event/redemption/img/logo-new.png" class="logo" alt="Free Fire Logo">
+    <button class="store-btn">STORE</button>
+  </header>
+
+  <div class="container">
+    <input id="redeemCode" type="text" maxlength="12" class="redeem-input" placeholder="ENTER CODE" />
+
+    <div class="button-group">
+      <button id="confirmBtn">Confirm</button>
+      <button id="logoutBtn">Log Out</button>
+    </div>
+
+    <style>
+  .important-box {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 6px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #000;
+  max-width: 360px; /* width kam ki */
+  margin: 110px auto 0; /* niche laya */
+  }
+  
+  .important-box strong {
+  display: block;
+  margin-bottom: 3px;
+  }
+  
+  .important-box p {
+  margin: 0;
+  padding: 0;
+  }
+</style>
+
+<div class="important-box">
+  <strong>Important Notice:</strong>
+  <p>1. Redemption code has <b style="color:red;">12/16</b> characters, consisting of capital letters and numbers.</p>
+  <p>2. Item rewards are shown in <b style="color:red;">[vault]</b> tab in game lobby; golds or diamonds will add in account wallet automatically.</p>
+  <p>3. Please note redemption expiration date. Any expired codes cannot be redeemed.</p>
+  <p>4. Please contact customer service if you encountered any issue.</p>
+  <p>5. Reminder: You will not be able to redeem your rewards with guest accounts. You may bind your account to Facebook or VK in order to receive the rewards.</p>
+</div>
+
+  <div class="popup" id="popup">
+    <h2>🎉 CONGRATULATIONS!</h2>
+    <p>Successfully Redeemed</p>
+    <p>Congratulations! You just obtained <b>【Code Giveaway BD】</b>,<br>reward will be sent in 24 hours to your account.</p>
+    <button onclick="closePopup()">OK</button>
+  </div>
+
+  <div class="footer">
+    <img src="https://dl.dir.freefiremobile.com/common/web_event/tweb-event/redemption/img/logo_small_foot.jpg" alt="Garena Logo">
+    <span>© Garena International. Trademarks belong to their respective owners. All rights reserved.</span>
+  </div>
+
+  <script>
+    const input = document.getElementById('redeemCode');
+    const confirmBtn = document.getElementById('confirmBtn');
+    const popup = document.getElementById('popup');
+
+    input.addEventListener('input', () => {
+      const code = input.value.toUpperCase();
+      input.value = code;
+      const valid = /^[A-Z0-9]{12}$/;
+
+      if (valid.test(code)) {
+        confirmBtn.classList.add('active');
+        confirmBtn.disabled = false;
+        confirmBtn.onclick = () => {
+          popup.style.display = 'block';
+        };
+      } else {
+        confirmBtn.classList.remove('active');
+        confirmBtn.disabled = true;
+        confirmBtn.onclick = null;
+      }
+    });
+
+    function closePopup() {
+      popup.style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
